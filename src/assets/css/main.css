@@ -1,0 +1,21 @@
+:root {
+  --primary-color: #37344b;
+  --secondary-color: #4590e7;
+  --btn-color: orangered;
+  --btn-hover-color: rgb(250, 123, 77);
+  --shadow: 0 3px 30px rgba(0, 0, 0, 0.1);
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ececec;
+}
+
+.highlight {
+  color: var(--secondary-color);
+}

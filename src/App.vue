@@ -1,26 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <LoginView v-if="view === views.login" @onLogin="handleLogin" />
+  <MainView
+    v-if="view === views.main"
+    :username="this.username"
+    @onLogout="handleLogout"
+  />
+  <FooterComponent />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import LoginView from "./views/LoginView.vue";
+import MainView from "./views/MainView.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 
 export default {
-  name: "App",
   components: {
-    HelloWorld,
+    LoginView,
+    MainView,
+    FooterComponent,
+  },
+  data() {
+    return {
+      views: {
+        login: "login",
+        main: "main",
+      },
+      view: "login",
+      username: "admin",
+    };
+  },
+  methods: {
+    redirectView(view) {
+      this.view = view;
+    },
+    handleLogin(username) {
+      this.redirectView(this.views.main);
+      this.username = username;
+    },
+    handleLogout() {
+      this.redirectView(this.views.login);
+      this.username = "admin";
+    },
   },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
